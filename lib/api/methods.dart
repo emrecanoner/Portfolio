@@ -8,7 +8,7 @@ List<Educations> parseEducationsResponse(String response) {
 }
 
 Future<List<Educations>> allEducations() async {
-  var url = Uri.parse("http://10.0.2.2:8080/get_educations.php");
+  var url = Uri.parse("http://192.168.1.35:8080/get_educations.php");
   var response = await http.get(url);
   return parseEducationsResponse(response.body);
 }
@@ -18,7 +18,7 @@ List<Pages> parsePagesResponse(String response) {
 }
 
 Future<List<Pages>> allPages() async {
-  var url = Uri.parse("http://10.0.2.2:8080/get_pages.php");
+  var url = Uri.parse("http://192.168.1.35:8080/get_pages.php");
   var response = await http.get(url);
   return parsePagesResponse(response.body);
 }
@@ -28,7 +28,7 @@ List<Experiences> parseExperiencesResponse(String response) {
 }
 
 Future<List<Experiences>> allExperiences() async {
-  var url = Uri.parse("http://10.0.2.2:8080/get_experiences.php");
+  var url = Uri.parse("http://192.168.1.35:8080/get_experiences.php");
   var response = await http.get(url);
   return parseExperiencesResponse(response.body);
 }
