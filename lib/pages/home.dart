@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
           "Can's Portfolio",
           style: TextStyle(fontSize: 20),
         ),
-        actions: <Widget>[
+        /* actions: <Widget>[
           TextButton(
             style: ButtonStyle(),
             onPressed: () {},
@@ -40,22 +40,29 @@ class _HomeState extends State<Home> {
               color: Colors.black,
             ),
           ),
-        ],
-        leading: IconButton(
+        ], */
+        /* leading: IconButton(
           icon: Icon(
             Icons.menu,
             weight: 50,
           ),
           color: Colors.black,
           onPressed: () {},
-        ),
+        ), */
       ),
       body: FutureBuilder(
         future: allPages(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var pagesList = snapshot.data;
-            return ListView.builder(
+            return GridView.builder(
+              padding: EdgeInsets.all(20),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 1,
+              ),
               itemCount: pagesList?.length,
               itemBuilder: (context, index) {
                 var page = pagesList?[index];
@@ -63,13 +70,35 @@ class _HomeState extends State<Home> {
                   onTap: () {
                     Navigator.of(context).pushNamed(animationTypeList[index]);
                   },
-                  child: SizedBox(
-                    height: 200,
-                    child: Card(
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 3,
+                              blurRadius: 10,
+                              offset: Offset(0, 3))
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(page!.names!),
+                          Image.asset(
+                            "assets/img/${page!.names}.png",
+                            width: 100,
+                            height: 100,
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            page.names!,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ],
                       ),
                     ),

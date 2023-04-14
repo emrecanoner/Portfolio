@@ -1,16 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:portfolio/api/methods.dart';
 
-class Experiences extends StatefulWidget {
-  const Experiences({super.key});
+class Skills extends StatefulWidget {
+  const Skills({super.key});
 
   @override
-  State<Experiences> createState() => _ExperiencesState();
+  State<Skills> createState() => _SkillsState();
 }
 
-class _ExperiencesState extends State<Experiences> {
+class _SkillsState extends State<Skills> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,34 +19,33 @@ class _ExperiencesState extends State<Experiences> {
         automaticallyImplyLeading: true,
         backgroundColor: Colors.pinkAccent,
         title: Text(
-          "Experiences",
+          "Skills",
           style: TextStyle(fontSize: 20),
         ),
       ),
       body: FutureBuilder(
-        future: allExperiences(),
+        future: allEducations(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var experienceList = snapshot.data;
+            var educationList = snapshot.data;
             return ListView.builder(
-              itemCount: experienceList?.length,
+              itemCount: educationList?.length,
               itemBuilder: (context, index) {
-                var experience = experienceList?[index];
+                var education = educationList?[index];
                 return GestureDetector(
                   child: SizedBox(
-                    height: 300,
+                    height: 200,
                     child: Card(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(experience!.title!),
-                          Text(experience.employment_type!),
-                          Text(experience.company_name!),
-                          Text(experience.location!),
-                          Text(experience.location_type!),
-                          Text(experience.starting_date!),
-                          Text(experience.ending_date!),
-                          Text(experience.description!),
+                          Text(education!.school_name!),
+                          Text(education.studying_field!),
+                          Text(education.starting_date!),
+                          Text(education.ending_date!),
+                          Text(education.grade!),
+                          Text(education.description!),
+                          Text(education.projects!),
                         ],
                       ),
                     ),
